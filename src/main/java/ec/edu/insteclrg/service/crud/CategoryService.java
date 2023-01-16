@@ -21,7 +21,7 @@ public class CategoryService extends GenericCrudServiceImpl<Category, CategoriaD
 
 	@Override
 	public Optional<Category> find(CategoriaDTO dto) {
-		return repository.findById(dto.getId());
+		return repository.findById(dto.getId()); 
 	}
 
 	@Override
@@ -32,6 +32,6 @@ public class CategoryService extends GenericCrudServiceImpl<Category, CategoriaD
 	@Override
 	public Category mapToDomain(CategoriaDTO dto) {
 		return modelMapper.map(dto, Category.class);
-	}
-
+	}	
+	
 }

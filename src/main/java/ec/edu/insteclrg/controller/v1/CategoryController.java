@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,14 +33,14 @@ public class CategoryController {
 		return new ResponseEntity<>(new ApiResponseDTO<>(true, null), HttpStatus.CREATED);
 	}
 
-	@PutMapping
+	@PutMapping(path= "actualizar")
 	public ResponseEntity<Object> actualizar(@RequestBody CategoriaDTO dto) {
-		// TODO
-		// Completar
-		return null;
+		service.update(dto);
+		return new ResponseEntity<>(new ApiResponseDTO<>(true, null),HttpStatus.CREATED);
+		
 	}
 
-	@GetMapping
+	@GetMapping(path = "listar")
 	public ResponseEntity<Object> listar() {
 		List<CategoriaDTO> list = service.findAll(new CategoriaDTO());
 		if (!list.isEmpty()) {
@@ -50,7 +51,7 @@ public class CategoryController {
 		}
 	}
 
-	@GetMapping(path = "{id}")
+	@GetMapping(path = "id/buscar")
 	public ResponseEntity<Object> buscar(@PathVariable Long id) {
 		CategoriaDTO dto = new CategoriaDTO();
 		dto.setId(id);
@@ -62,8 +63,19 @@ public class CategoryController {
 			return new ResponseEntity<>(new ApiResponseDTO<>(false, null), HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	@DeleteMapping(path = "/id/eliminar")
+	public ResponseEntity<Object> eliminar(@PathVariable Long id) {
+		CategoriaDTO dto = new CategoriaDTO();
+		dto.setId(id);
+		Optional<Category> domain = service.find(dto);
+		if (!domain.isEmpty()) {
+			service.delete(dto);
+			return new ResponseEntity<>(new ApiResponseDTO<>(true, dto), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(new ApiResponseDTO<>(false, null), HttpStatus.NOT_FOUND);
+		}
+	}
 
-	// TODO
-	// eliminar por id
 
 }

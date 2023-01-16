@@ -19,10 +19,10 @@ public class Product {
 	@Column(updatable = false, nullable = false)
 	private Long id;
 
-	@Column(unique = true, nullable = false)
+	@Column(unique = true, nullable = false,length = 50)
 	private String name;
 
 	@ManyToOne(cascade = CascadeType.ALL, optional = false)
-	@JoinColumn(name = "category_id")
+	@JoinColumn
 	private Category category;
 }
