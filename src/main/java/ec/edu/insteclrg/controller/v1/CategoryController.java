@@ -21,7 +21,7 @@ import ec.edu.insteclrg.dto.CategoriaDTO;
 import ec.edu.insteclrg.service.crud.CategoryService;
 
 @RestController
-@RequestMapping("/api/v1.0/categoria/")
+@RequestMapping("/api/v1.0/categoria/")//url del controlador de categoria
 public class CategoryController {
 
 	@Autowired
@@ -33,14 +33,14 @@ public class CategoryController {
 		return new ResponseEntity<>(new ApiResponseDTO<>(true, null), HttpStatus.CREATED);
 	}
 
-	@PutMapping(path= "actualizar")
+	@PutMapping
 	public ResponseEntity<Object> actualizar(@RequestBody CategoriaDTO dto) {
 		service.update(dto);
 		return new ResponseEntity<>(new ApiResponseDTO<>(true, null),HttpStatus.CREATED);
 		
 	}
 
-	@GetMapping(path = "listar")
+	@GetMapping
 	public ResponseEntity<Object> listar() {
 		List<CategoriaDTO> list = service.findAll(new CategoriaDTO());
 		if (!list.isEmpty()) {
@@ -50,8 +50,9 @@ public class CategoryController {
 			return new ResponseEntity<>(new ApiResponseDTO<>(false, null), HttpStatus.NOT_FOUND);
 		}
 	}
-
-	@GetMapping(path = "id/buscar")
+	
+	//se coloca las {} en el path xq vamos a recibir un dato y "id sera donde se colocara"
+	@GetMapping(path = "{id}")
 	public ResponseEntity<Object> buscar(@PathVariable Long id) {
 		CategoriaDTO dto = new CategoriaDTO();
 		dto.setId(id);
@@ -64,7 +65,8 @@ public class CategoryController {
 		}
 	}
 	
-	@DeleteMapping(path = "/id/eliminar")
+	//se coloca las {} en el path xq vamos a recibir un dato y "id sera donde se colocara"
+	@DeleteMapping(path = "{id}")
 	public ResponseEntity<Object> eliminar(@PathVariable Long id) {
 		CategoriaDTO dto = new CategoriaDTO();
 		dto.setId(id);

@@ -6,6 +6,7 @@ public class ResourceNotFoundException extends RuntimeException {
 
 	public ResourceNotFoundException(String object) {
 		super(String.format("%s no se encuentra registrado o estatus inválido para esta acción", object));
+		
 	}
 
 }

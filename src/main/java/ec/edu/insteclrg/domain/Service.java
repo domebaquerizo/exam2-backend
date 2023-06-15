@@ -1,3 +1,4 @@
+
 package ec.edu.insteclrg.domain;
 
 import javax.persistence.Column;

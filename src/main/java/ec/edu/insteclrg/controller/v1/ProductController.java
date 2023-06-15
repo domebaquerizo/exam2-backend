@@ -26,20 +26,20 @@ public class ProductController {
 	@Autowired
 	ProductService service;
 
-	@PostMapping(path = "guardar")
+	@PostMapping
 	public ResponseEntity<Object> guardar(@RequestBody ProductoDTO dto) {
 		service.save(dto);
 		return new ResponseEntity<>(new ApiResponseDTO<>(true, null), HttpStatus.CREATED);
 	}
 
-	@PutMapping(value= "actualizar")
+	@PutMapping
 	public ResponseEntity<Object> actualizar(@RequestBody ProductoDTO dto) {
 		service.update(dto);
 		return new ResponseEntity<>(new ApiResponseDTO<>(true, null),HttpStatus.CREATED);
 		
 	}
 
-	@GetMapping(path = "listar")
+	@GetMapping
 	public ResponseEntity<Object> listar() {
 		List<ProductoDTO> list = service.findAll(new ProductoDTO());
 		if (!list.isEmpty()) {
@@ -50,7 +50,8 @@ public class ProductController {
 		}
 	}
 
-	@GetMapping(path = "id/buscar")
+	//se coloca las {} en el path xq vamos a recibir un dato y "id sera donde se colocara"
+	@GetMapping(path = "{id}")
 	public ResponseEntity<Object> buscar(@PathVariable Long id) {
 		ProductoDTO dto = new ProductoDTO();
 		dto.setId(id);
@@ -63,7 +64,8 @@ public class ProductController {
 		}
 	}
 	
-	@DeleteMapping(path = "/id/eliminar")
+	//se coloca las {} en el path xq vamos a recibir un dato y "id sera donde se colocara"
+	@DeleteMapping(path = "{id}")
 	public ResponseEntity<Object> eliminar(@PathVariable Long id) {
 		ProductoDTO dto = new ProductoDTO();
 		dto.setId(id);

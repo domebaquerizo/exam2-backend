@@ -1,3 +1,4 @@
+
 package ec.edu.insteclrg.persistence;
 
 import org.springframework.data.jpa.repository.JpaRepository;

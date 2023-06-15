@@ -21,18 +21,20 @@ import ec.edu.insteclrg.dto.ServicioDTO;
 import ec.edu.insteclrg.service.crud.ServiceService;
 
 @RestController
-@RequestMapping("/api/v1.0/servicio/")
+@RequestMapping("/api/v1.0/servicio/")//url del controlador de servicio
 public class ServiceController {
 	@Autowired
 	ServiceService service;
 
-	@PostMapping
+	//Guardamos datos en la clase servicio
+	@PostMapping 
 	public ResponseEntity<Object> guardar(@RequestBody ServicioDTO dto) {
 		service.save(dto);
 		return new ResponseEntity<>(new ApiResponseDTO<>(true, null), HttpStatus.CREATED);
 	}
 
-	@PutMapping(value= "Service")
+	//Actualizar datos en servicio
+	@PutMapping
 	public ResponseEntity<Object> actualizar(@RequestBody ServicioDTO dto) {
 		service.update(dto);
 		return new ResponseEntity<>(new ApiResponseDTO<>(true, null),HttpStatus.CREATED);
@@ -50,7 +52,7 @@ public class ServiceController {
 		}
 	}
 
-	@GetMapping(path = "id/buscar")
+	@GetMapping(path = "{id}")
 	public ResponseEntity<Object> buscar(@PathVariable Long id) {
 		ServicioDTO dto = new ServicioDTO();
 		dto.setId(id);
@@ -63,7 +65,7 @@ public class ServiceController {
 		}
 	}
 	
-	@DeleteMapping(path = "id/eliminar")
+	@DeleteMapping(path = "{id}")
 	public ResponseEntity<Object> eliminar(@PathVariable Long id) {
 		ServicioDTO dto = new ServicioDTO();
 		dto.setId(id);

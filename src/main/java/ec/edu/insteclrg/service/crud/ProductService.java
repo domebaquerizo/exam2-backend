@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ec.edu.insteclrg.domain.Product;
-import ec.edu.insteclrg.domain.Product;
-import ec.edu.insteclrg.dto.ProductoDTO;
 import ec.edu.insteclrg.dto.ProductoDTO;
 import ec.edu.insteclrg.persistence.ProductRepository;
 import ec.edu.insteclrg.service.GenericCrudServiceImpl;

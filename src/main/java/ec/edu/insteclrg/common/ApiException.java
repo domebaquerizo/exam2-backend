@@ -1,3 +1,6 @@
+
+
+
 package ec.edu.insteclrg.common;
 
 public class ApiException extends RuntimeException {
